@@ -17,6 +17,7 @@ end
 
   
 def so_close(close_tickets, winners)
+	counter = 0
 	close_tickets.each_with_index do |num, position|
 		# puts num
 		# puts position
@@ -35,16 +36,23 @@ def so_close(close_tickets, winners)
 		puts
 		splitter2 = winners[position].to_s.split("")
 		print splitter2
+
 		splitter1.each_with_index do |splitnumber,splitposition|
 			if splitnumber == splitter2[splitposition]
-				print "matches, "
-			else
-				print "does not match, "
+				counter += 1
 			end
-
 		end
+		puts
+		puts counter.to_s + " matches"
 	end
-	true #placeholder so test passes for now
+	if counter == 4
+		 "Winner!!"
+	elsif counter == 3
+		 "So close!"
+	else
+		 "LOSER"
+	end
+
 end
 
 
