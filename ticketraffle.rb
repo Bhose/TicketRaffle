@@ -17,9 +17,8 @@ end
 
   
 def so_close(winning_tickets, my_ticket)
-	we_were_close = false
+	we_were_close = false #setting to false because idk if there's a close ticket yet
 	my_ticket_digits = my_ticket.to_s.split("")
-
 	#Loop through all winning tickets
 	winning_tickets.each do |winning_ticket|
 		#splitting current winning ticket into an array of digits 
@@ -34,8 +33,11 @@ def so_close(winning_tickets, my_ticket)
 #compares winning ticket vs my ticket in split array vvv
 		matches = 0
 		digits.each_with_index do |digit,digitposition|
+#This loops through each digit of ticket (value and position)^^
 			if digit == my_ticket_digits[digitposition]
+#if digit from winner and my ticket match, counter increases by one
 				matches += 1
+#if there are no matches, keep looping to next digit
 			end
 		end
 
@@ -47,8 +49,8 @@ def so_close(winning_tickets, my_ticket)
 		elsif matches == 3 #we were close
 			we_were_close = true
 		end
-	end
-
+	end  #end of looping through all tickets
+#Didn't have a winning ticket, check to see if close vvv
 	if we_were_close == true
 		 return "So close!"
 	else
