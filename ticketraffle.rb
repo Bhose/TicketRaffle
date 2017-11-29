@@ -16,60 +16,43 @@ def ticket_search(winners, my_ticket)
 end
 
   
-def so_close(close_tickets, winners)
-	counter = 0
-	close_tickets.each_with_index do |num, position|
-		# puts num
-		# puts position
+def so_close(winning_tickets, my_ticket)
+	we_were_close = false
+	my_ticket_digits = my_ticket.to_s.split("")
 
-		#comparing values and positions in each array
-		# puts
-		# puts
-		# puts num.to_s + " -- " + winners[position].to_s
-
-
-		#splitting close ticket array
-		splitter1 = num.to_s.split("")
+	#Loop through all winning tickets
+	winning_tickets.each do |winning_ticket|
+		#splitting current winning ticket into an array of digits 
+		digits = winning_ticket.to_s.split("")
 		puts 
 		puts
-		print splitter1
+		print digits #from winning ticket
 		puts
-		splitter2 = winners[position].to_s.split("")
-		print splitter2
+		print my_ticket_digits #from my ticket
+#Prints winning ticket vs my ticket in split array^^^
 
-		splitter1.each_with_index do |splitnumber,splitposition|
-			if splitnumber == splitter2[splitposition]
-				counter += 1
+#compares winning ticket vs my ticket in split array vvv
+		matches = 0
+		digits.each_with_index do |digit,digitposition|
+			if digit == my_ticket_digits[digitposition]
+				matches += 1
 			end
 		end
+
 		puts
-		puts counter.to_s + " matches"
+		puts matches.to_s + " matches"
+
+		if matches == 4 #we WIN! break out of this loop and exit the function
+			return "Winner!"
+		elsif matches == 3 #we were close
+			we_were_close = true
+		end
 	end
-	if counter == 4
-		 "Winner!!"
-	elsif counter == 3
-		 "So close!"
+
+	if we_were_close == true
+		 return "So close!"
 	else
-		 "LOSER"
+		 return "LOSER"
 	end
 
 end
-
-
-
-
-
-
-
-# 	if close_tickets.each(my_ticket) == true
-# 		puts "So Close"
-# 	else
-# 		puts "Sorry, you lose"
-# 	end
-	# if winners.each(my_ticket) == true
-	# 	puts "So Close!"
-	# else
-	# 	puts "Sorry, you lose."
-	# e
-
-

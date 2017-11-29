@@ -30,12 +30,21 @@ class TestTicketRaffle < Minitest::Test
 		assert_equal(false, ticket_search(winners, my_ticket))
 	end
 
-	def test_assert_that_ticket_is_a_loser
+	def test_assert_that_ticket_is_a_loser2
 		winners = [1234, 3456, 5678]
-		close_tickets = [1233, 3456, 5447]
-		assert_equal("LOSER", so_close(close_tickets, winners))
+		my_ticket = 7777
+		assert_equal("LOSER", so_close(winners, my_ticket))
 	end
 
+	def test_assert_that_ticket_is_close
+		winners = [1234, 3456, 5678]
+		my_ticket = 1233
+		assert_equal("So close!", so_close(winners, my_ticket))
+	end
 
-
+	def test_assert_that_ticket_is_a_winner
+		winners = [3455, 3456, 5678]
+		my_ticket = 3456
+		assert_equal("Winner!", so_close(winners, my_ticket))
+	end
 end
